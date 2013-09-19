@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rotating mandala creator</title>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="content/site.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/pen.js"></script>
+    <script src="scripts/jscolor.js"></script>
+    <script src="scripts/definition.js"></script>
+
+    <script>
+
+        var pen;
+
+        function startAnimation() {
+
+            if (pen != undefined) { pen.Stop(); }
+            pen = new Pen("drawing", $("#radius").val(), $("#Xoffset").val(), $("#Yoffset").val(), $("#speed").val(), $("#color").val());
+
+        };
+
+        $(function () {
+
+            var def = new Definition("defining");
+            $("#defining").on("defined", function () {
+
+                $("#radius").val(def.radius);
+                $("#Xoffset").val(def.posX);
+                $("#Yoffset").val(def.posY);
+
+            });
+
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="span6">
+                <canvas class="canvas" id="drawing" width="500" height="500"></canvas>
+            </div>
+            <div class="span6">
+                <canvas class="canvas" id="defining" width="500" height="500"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span6">
+                <form class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label">Radius:</label>
+                        <div class="controls">
+                            <input type="text" id="radius" class="span2" value="200" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">X offset:</label>
+                        <div class="controls">
+                            <input type="text" id="Xoffset" class="span2" value="20" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Y offset:</label>
+                        <div class="controls">
+                            <input type="text" id="Yoffset" class="span2" value="150" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Speed:</label>
+                        <div class="controls">
+                            <input type="text" id="speed" class="span2" value="10" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Color:</label>
+                        <div class="controls">
+                            <input type="text" id="color" class="color span2" value="#000000" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="button" class="btn" id="start" value="Start" onclick="startAnimation()" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
