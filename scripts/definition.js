@@ -7,10 +7,17 @@
 
     $canvas.mousedown(function (e) {
 
+        if (e.offsetX == undefined) {
+
+            e.offsetX = e.pageX - e.target.offsetLeft;
+            e.offsetY = e.pageY - e.target.offsetTop;
+
+        }
+
         if (self.center == undefined) {
             self.center = { x: e.offsetX, y: e.offsetY };
         }
-        else if (self.circle==undefined) {
+        else if (self.circle == undefined) {
 
             self.radius = Math.round(distance(self.center.x, self.center.y, e.offsetX, e.offsetY));
             self.circle = { center: self.center, radius: self.radius };
@@ -31,7 +38,14 @@
 
     $canvas.mousemove(function (e) {
 
-        if (self.center != undefined && self.circle==undefined) {
+        if (e.offsetX == undefined) {
+
+            e.offsetX = e.pageX - e.target.offsetLeft;
+            e.offsetY = e.pageY - e.target.offsetTop;
+
+        }
+
+        if (self.center != undefined && self.circle == undefined) {
 
             context.clearCanvas();
             context.drawCircle(self.center.x, self.center.y, Math.round(distance(self.center.x, self.center.y, e.offsetX, e.offsetY)));
