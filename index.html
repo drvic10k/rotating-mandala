@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Rotating mandala creator</title>
 
@@ -11,45 +12,42 @@
     <script src="scripts/jscolor.js"></script>
     <script src="scripts/definition.js"></script>
 
-    var pen;
-    
-    function startAnimation() {
-    
-        if (pen != undefined) { pen.Stop(); }
-        pen = new Pen("drawing", $("#radius").val(), $("#Xoffset").val(), $("#Yoffset").val(), $("#speed").val(), $("#color").val());
-    
-    };
-    
-    $(function () {
-    
-        var def = new Definition("defining");
-        $("#defining").on("defined", function () {
-    
-            $("#radius").val(def.radius);
-            $("#Xoffset").val(def.posX);
-            $("#Yoffset").val(def.posY);
-    
+    <script>
+        var pen;
+
+        function startAnimation() {
+            if(pen != undefined) {
+                pen.Stop();
+            }
+            pen = new Pen("drawing", $("#radius").val(), $("#Xoffset").val(), $("#Yoffset").val(), $("#speed").val(), $("#color").val());
+        };
+        $(function() {
+            var def = new Definition("defining");
+            $("#defining").on("defined", function() {
+                $("#radius").val(def.radius);
+                $("#Xoffset").val(def.posX);
+                $("#Yoffset").val(def.posY);
+            });
         });
-    
-    });
+    </script>
 
 </head>
 
 <body>
 
     <div class="container">
-<div class="row">
-    <div class="span6">
-        <h2>
+        <div class="row">
+            <div class="span6">
+                <h2>
             Resulting mandala
         </h2>
-    </div>
-    <div class="span6">
-        <h2>
+            </div>
+            <div class="span6">
+                <h2>
             Set input parameters
         </h2>
-    </div>
-    </div>
+            </div>
+        </div>
         <div class="row">
             <div class="span6">
                 <canvas class="canvas" id="drawing" width="500" height="500"></canvas>
